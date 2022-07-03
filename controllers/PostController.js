@@ -32,6 +32,29 @@ export const getAll = async (req, res) => {
   }
 };
 
+export const getTags = async (req, res) => {
+  try {
+    const tags = await PostModel.distinct("tags").exec();
+    res.json(tags);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({
+      message: "There was an error getting all tags",
+    });
+  }
+};
+export const getByTag = async (req, res) => {
+  try {
+    const posts = await PostModel.find({ tags: req.params.tag }).populate("user").exec();
+    res.json(posts);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({
+      message: "There was an error getting all posts",
+    });
+  }
+}
+
 export const getOne = async (req, res) => {
   try {
     const postId = req.params.id;
