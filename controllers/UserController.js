@@ -59,21 +59,20 @@ export const login = async (req, res) => {
 };
 
 export const getMe = async (req, res) => {
-  try {
-    const user = await userModel.findById(req.userId);
-    if (!user) {
-      return res.status(404).json({
-        message: "User not found",
-      });
-    }
-    const { passwordHash, ...userData } = user._doc;
-    res.send(userData);
-
-    res.json(userData);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({
-      message: "Error getting user",
-    });
-  }
+  // try {
+  //   const user = await userModel.findById(req.userId);
+  //   if (!user) {
+  //     return res.status(404).json({
+  //       message: "User not found",
+  //     });
+  //   }
+  //   const { passwordHash, ...userData } = user._doc;
+  //   res.send(userData);
+  //   res.json(userData);
+  // } catch (err) {
+  //   console.error(err);
+  //   res.status(500).json({
+  //     message: "Error getting user",
+  //   });
+  // }
 };
